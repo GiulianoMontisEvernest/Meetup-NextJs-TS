@@ -1,5 +1,5 @@
-import { FC, FormEvent, TextareaHTMLAttributes, useRef } from 'react';
-import { MeetupItemProps } from './MeetupItem';
+import { FC, FormEvent, useRef } from 'react';
+import { MeetupItemProps } from "../../lib/dummyData";
 
 import Card from '../ui/Card';
 import classes from './NewMeetupForm.module.css';
@@ -28,7 +28,7 @@ const NewMeetupForm: FC<NewMeetupFormProps> = (props) => {
       address: enteredAddress,
       description: enteredDescription,
     };
-
+    console.log(meetupData);
     props.onAddMeetup(meetupData);
   };
 

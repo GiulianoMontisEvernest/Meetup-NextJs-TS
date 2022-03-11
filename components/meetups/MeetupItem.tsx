@@ -1,13 +1,7 @@
 import { FC } from 'react';
 import Card from '../ui/Card';
+import {MeetupItemProps} from "../../lib/dummyData";
 import classes from './MeetupItem.module.css';
-
-export interface MeetupItemProps {
-  id: number;
-  image: string;
-  title: string;
-  address: string;
-}
 
 const MeetupItem: FC<MeetupItemProps> = ({ id, image, title, address }) => {
   return (

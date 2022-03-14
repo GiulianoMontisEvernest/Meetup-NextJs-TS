@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { MongoClient } from 'mongodb';
 import MeetupDetail from '../../components/meetups/MeetupDetail';
 import { MeetupItemProps } from '../../lib/model';
+import Head from 'next/head';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const client = await MongoClient.connect(
@@ -50,7 +51,15 @@ interface MeetupDetailsProps {
 }
 
 const MeetupDetails: NextPage<MeetupDetailsProps> = ({ meetup }) => {
-  return <MeetupDetail meetup={meetup} />;
+  return (
+    <>
+      <Head>
+        <title>{meetup.title}</title>
+        <meta name="description" content={meetup.description} />
+      </Head>
+      <MeetupDetail meetup={meetup} />
+    </>
+  );
 };
 
 export default MeetupDetails;

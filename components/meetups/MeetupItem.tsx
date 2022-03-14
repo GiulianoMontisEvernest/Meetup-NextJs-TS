@@ -1,9 +1,17 @@
 import { FC } from 'react';
+import { useRouter } from 'next/router';
 import Card from '../ui/Card';
-import {MeetupItemProps} from "../../lib/dummyData";
+import { MeetupItemProps } from '../../lib/model';
+
 import classes from './MeetupItem.module.css';
 
-const MeetupItem: FC<MeetupItemProps> = ({ id, image, title, address }) => {
+const MeetupItem: FC<MeetupItemProps> = ({ _id, image, title, address }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/${_id}`);
+  };
+
   return (
     <li className={classes.item}>
       <Card>
@@ -15,7 +23,7 @@ const MeetupItem: FC<MeetupItemProps> = ({ id, image, title, address }) => {
           <address>{address}</address>
         </div>
         <div className={classes.actions}>
-          <button>Show Details</button>
+          <button onClick={handleClick}>Show Details</button>
         </div>
       </Card>
     </li>

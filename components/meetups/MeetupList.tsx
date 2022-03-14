@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import MeetupItem from './MeetupItem';
-import { MeetupItemProps } from './MeetupItem';
+import { MeetupItemProps } from '../../lib/model';
 
 import classes from './MeetupList.module.css';
 
@@ -11,14 +11,8 @@ interface MeetupListProps {
 const MeetupList: FC<MeetupListProps> = ({ meetups }) => {
   return (
     <ul className={classes.list}>
-      {meetups.map(({ id, image, title, address }) => (
-        <MeetupItem
-          key={id}
-          id={id}
-          image={image}
-          title={title}
-          address={address}
-        />
+      {meetups.map((meetup) => (
+        <MeetupItem key={meetup._id} {...meetup} />
       ))}
     </ul>
   );

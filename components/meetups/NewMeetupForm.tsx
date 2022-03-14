@@ -1,14 +1,13 @@
 import { FC, FormEvent, useRef } from 'react';
-import { MeetupItemProps } from "../../lib/dummyData";
-
 import Card from '../ui/Card';
+
 import classes from './NewMeetupForm.module.css';
 
 interface NewMeetupFormProps {
-  onAddMeetup: (data: any) => void;
+  onAddMeetup: (newMeetup: any) => void;
 }
 
-const NewMeetupForm: FC<NewMeetupFormProps> = (props) => {
+const NewMeetupForm: FC<NewMeetupFormProps> = ({ onAddMeetup }) => {
   const titleInputRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const addressInputRef = useRef<HTMLInputElement>(null);
@@ -22,14 +21,14 @@ const NewMeetupForm: FC<NewMeetupFormProps> = (props) => {
     const enteredAddress = addressInputRef.current?.value;
     const enteredDescription = descriptionInputRef.current?.value;
 
-    const meetupData = {
+    const newMeetup = {
       title: enteredTitle,
       image: enteredImage,
       address: enteredAddress,
       description: enteredDescription,
     };
-    console.log(meetupData);
-    props.onAddMeetup(meetupData);
+
+    onAddMeetup(newMeetup);
   };
 
   return (
@@ -57,7 +56,7 @@ const NewMeetupForm: FC<NewMeetupFormProps> = (props) => {
           ></textarea>
         </div>
         <div className={classes.actions}>
-          <button>Add Meetup</button>
+          <button type="submit">Add Meetup</button>
         </div>
       </form>
     </Card>
